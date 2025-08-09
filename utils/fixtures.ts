@@ -1,24 +1,50 @@
-// fixtures.ts
-import { test as base, Browser, BrowserContext, Page } from '@playwright/test';
-import dotenv from 'dotenv'
 
-dotenv.config({path:`Environment/.env.sit`})
-type MyFixtures = {
-page: Page;
-};
+import {LoginPage} from '../pages/HomePage/LoginPage'
+import {HomePage } from '../pages/HomePage/HomePage'
+import {DebitCardAppPage} from '../pages/DebitCard/DebitCardAppPage'
+import {CredtCardAppPage} from '../pages/CreditCard/CredtCardAppPage'
+import {TrackingApplicationStatus} from '../pages/TrackingPage/TrackApplicationStatus'
+import {CommonLibrary} from '../utils/CommonLibrary'
+import {test as base} from '@playwright/test'
 
-export const test = base.extend<MyFixtures>({
-page: async ({ browser }, use) => {
-const context = await browser.newContext();
-const page = await context.newPage();
-const url=process.env.SIT as string
-await page.goto(url)
 
-await use(page);
+type fixtures={
+    loginPage:LoginPage
+    homePage:HomePage
+    debitCardApp:DebitCardAppPage
+    creditCardApp:CredtCardAppPage 
+    trackingApp:()=> Promise<TrackingApplicationStatus>  
+    commonLib:CommonLibrary
 
-await page.close();
-await context.close();
-},
-});
+}
 
-export { expect } from '@playwright/test';
+export const test=base.extend<fixtures>({
+ loginPage:async({page},use)=>{
+    await use(new LoginPage(page))
+     },
+ homePage:async({page},use)=>{
+    await use(new HomePage(page))
+ } ,
+ debitCardApp:async({page},use)=>{
+    await use(new DebitCardAppPage(page))
+ } ,
+ creditCardApp:async({page},use)=>{
+    await use(new CredtCardAppPage(page)) //here we are passing object to create fixture
+ },
+ 
+ trackingApp:async({page},use)=>{   //creating fixture
+   const fn = async () => {             //aynomous function adn store in function variable fn
+     const commonlib=new CommonLibrary(page)
+     const page1=await commonlib.switchToWindow(1)
+
+    return new TrackingApplicationStatus(page1)}
+    await use(fn)   //passing this function to create fixture
+ }  ,
+ commonLib:async({page},use)=>{
+   await use (new CommonLibrary(page))
+ }
+})
+
+
+
+//export{test} -- other way to export

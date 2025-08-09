@@ -1,20 +1,19 @@
-import test from '@playwright/test'
 import dotenv from 'dotenv'
 import { LoginPage } from '../../pages/HomePage/LoginPage'
 import { CommonLibrary } from '../../utils/CommonLibrary'
 import { HomePage } from '../../pages/HomePage/HomePage'
 import  '../../utils/hooks'
+import {test} from '../../utils/fixtures'  // bypasing playwright test method thru fixture
 
 
 dotenv.config({path:'Environment/.env.sit'})
 
-test('Online login', async({page})=>{
+test('Online login', async({page,loginPage,homePage,commonLib})=>{
 
-    const loginPage=new LoginPage(page)
-    const commonLibrary=new CommonLibrary(page)
-    const homePage=new HomePage(page)
+    //const commonLibrary=new CommonLibrary(page)
+   
 
-    const loginData=await commonLibrary.readingValueFromCSV("testdata/LoginDataCred.csv")
+    const loginData=await commonLib.readingValueFromCSV("testdata/LoginDataCred.csv")
 
     if(await homePage.islogOutPresent()){
        await homePage.logOut()
@@ -31,7 +30,7 @@ test('Online login', async({page})=>{
     }
     
 }
-   await commonLibrary.storageState('Credtiantls/login.json')
+   await commonLib.storageState('Credtiantls/login.json')
 
  
 

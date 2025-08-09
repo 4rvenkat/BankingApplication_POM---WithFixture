@@ -1,12 +1,6 @@
-import test, { chromium } from "@playwright/test";
-import { LoginPage } from "../../pages/HomePage/LoginPage";
-import { HomePage } from "../../pages/HomePage/HomePage";
-import { CredtCardAppPage } from "../../pages/CreditCard/CredtCardAppPage";
-import { TrackingApplicationStatus } from "../../pages/TrackingPage/TrackApplicationStatus";
-import { DebitCardAppPage } from "../../pages/DebitCard/DebitCardAppPage";
-import { CommonLibrary } from "../../utils/CommonLibrary";
 //import dotenv from 'dotenv'
 import "../../utils/hooks";
+import {test} from "../../utils/fixtures"
 
 //dotenv.config({path:`Environment/.env.sit`})
 
@@ -18,43 +12,38 @@ import "../../utils/hooks";
 })*/
  
 
-test('Apply credit Card',async({page})=>{
- 
-   const homePage=new HomePage(page);
-   const credtCardApp=new CredtCardAppPage(page)
-   const commonlib=new CommonLibrary(page)
+test('Apply credit Card',async({page,homePage,creditCardApp,trackingApp})=>{
+   console.log("before creditcard click")
    await homePage.navigateToCreditCardApplicationForm()
-   await credtCardApp.fillCreditCardApplication();
+   await creditCardApp.fillCreditCardApplication();
    await page.waitForTimeout(10000)
-   await credtCardApp.findcreditCardTrackingnumber()
+   await creditCardApp.findcreditCardTrackingnumber()
    await homePage.navigateToHomePage()
   // const newPage=page.waitForEvent('popup')
    await homePage.navigateToTrackApplicationStatus();
   // const page1= await newPage;
-   const page1=await commonlib.switchToWindow(1)
-   const trackingApplicationStatus=new TrackingApplicationStatus(page1)
-   await trackingApplicationStatus.trackYourCreditCardApplicationStatus()
-   await trackingApplicationStatus.verifyCreditCardApplicationStatus();
+  // const page1=await commonLib.switchToWindow(1)
+  // const trackingApplicationStatus=new TrackingApplicationStatus(page1)
+   const tracApp= await trackingApp()
+   await tracApp.trackYourCreditCardApplicationStatus()
+   await tracApp.verifyCreditCardApplicationStatus();
    await page.waitForTimeout(3000)
  
 
 })
-test('Apply Debit Card',async({page})=>{
+test('Apply Debit Card',async({page,homePage,debitCardApp,trackingApp})=>{
 
-
-
-    const homePage=new HomePage(page);
-    const debitCardApp=new DebitCardAppPage(page)
-    const commonlib=new CommonLibrary(page)
+  
     await homePage.navigateToDebicreditCardApplicationForm()
     await debitCardApp.fillDebitCardAppForm();
     await debitCardApp.findDebitCardTrackingnumber()
     await homePage.navigateToHomePage()
     await homePage.navigateToTrackApplicationStatus();
-    const page1=await commonlib.switchToWindow(1)
-    const trackingApplicationStatus=new TrackingApplicationStatus(page1)
-    await trackingApplicationStatus.trackYourDebitCardApplicationStatus()
-    await trackingApplicationStatus.verifyDebitCardApplicationStatus();
+   //  const page1=await commonLib.switchToWindow(1)
+   //  const trackingApplicationStatus=new TrackingApplicationStatus(page1)
+     const tracApp= await trackingApp()
+    await tracApp.trackYourDebitCardApplicationStatus()
+    await tracApp.verifyDebitCardApplicationStatus();
     await page.waitForTimeout(3000)
   
  

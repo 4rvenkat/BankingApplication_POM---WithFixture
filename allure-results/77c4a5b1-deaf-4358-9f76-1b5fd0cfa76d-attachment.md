@@ -1,0 +1,112 @@
+# Page snapshot
+
+```yaml
+- link "Skip to main content":
+  - /url: "#main"
+- banner:
+  - link:
+    - /url: https://playwrightautomationtesting.blogspot.com/
+    - img
+  - button "Search"
+  - search
+  - heading "SenthilSmartQAHub" [level=1]:
+    - link "SenthilSmartQAHub":
+      - /url: https://playwrightautomationtesting.blogspot.com/
+  - paragraph: A dedicated site offering various scenarios to practice web automation, including elements like sliders, tables, and forms
+  - navigation:
+    - list:
+      - listitem:
+        - link "About":
+          - /url: http://playwrightautomationtesting.blogspot.com/
+      - listitem:
+        - text: ·
+        - link "Course Topics":
+          - /url: https://playwrightautomationtesting.blogspot.com/2024/12/playwright-topices.html
+      - listitem:
+        - text: ·
+        - link "Elements":
+          - /url: https://playwrightautomationtesting.blogspot.com/2025/04/elements.html
+      - listitem:
+        - text: ·
+        - link "Study Material":
+          - /url: https://playwrightautomationtesting.blogspot.com/2025/01/playwright.html
+      - listitem:
+        - text: ·
+        - link "Live Practical Session":
+          - /url: https://playwrightautomationtesting.blogspot.com/2025/01/practical-session_28.html
+      - listitem: · More…
+- main:
+  - button "Share"
+  - link "June 26, 2025":
+    - /url: https://playwrightautomationtesting.blogspot.com/2025/06/debit-card-application-form.html
+    - time: June 26, 2025
+  - heading "Debit Card Application Form" [level=3]
+  - text: —
+  - heading "Debit Card Application" [level=2]
+  - text: Full Name *
+  - textbox "Full Name *": Test
+  - text: Gender *
+  - radio "Male"
+  - text: Male
+  - radio "Female" [checked]
+  - text: Female
+  - radio "Other"
+  - text: Other Current City *
+  - textbox "Current City *": Chennai
+  - text: Account Number *
+  - textbox "Account Number *": "12345678901"
+  - text: Select Card Type *
+  - combobox "Select Card Type *":
+    - option "-- Select Card Type --"
+    - option "Classic"
+    - option "Platinum" [selected]
+    - option "International"
+  - checkbox "I confirm the above details are correct *"
+  - text: I confirm the above details are correct *
+  - button "Apply for Debit Card"
+  - button "Share"
+  - heading "Comments" [level=3]
+  - iframe
+  - heading "Popular Posts" [level=3]
+  - feed:
+    - article:
+      - link "June 28, 2025":
+        - /url: https://playwrightautomationtesting.blogspot.com/2025/06/banking-application.html
+        - time: June 28, 2025
+      - heading "Banking Application" [level=3]:
+        - link "Banking Application":
+          - /url: https://playwrightautomationtesting.blogspot.com/2025/06/banking-application.html
+      - button "Share"
+      - link "Post a Comment":
+        - /url: https://playwrightautomationtesting.blogspot.com/2025/06/banking-application.html#comments
+    - article:
+      - link "June 22, 2025":
+        - /url: https://playwrightautomationtesting.blogspot.com/2025/06/credit-card-application-form.html
+        - time: June 22, 2025
+      - heading "Credit Card Application Form" [level=3]:
+        - link "Credit Card Application Form":
+          - /url: https://playwrightautomationtesting.blogspot.com/2025/06/credit-card-application-form.html
+      - button "Share"
+      - link "Post a Comment":
+        - /url: https://playwrightautomationtesting.blogspot.com/2025/06/credit-card-application-form.html#comments
+- contentinfo:
+  - link "Powered by Blogger":
+    - /url: https://www.blogger.com
+    - img
+    - text: Powered by Blogger
+  - text: SenthilSmartQAHub
+- complementary:
+  - img
+  - link "My photo":
+    - /url: https://www.blogger.com/profile/03255003548313716888
+    - img "My photo"
+  - term:
+    - link "Senthil - 08667454405":
+      - /url: https://www.blogger.com/profile/03255003548313716888
+  - definition: — "Hello and welcome to my blog! I have developed this blog for you—to share practical automation examples, help refine your skills, and guide you on your journey to becoming a proficient code writer
+  - link "Visit profile":
+    - /url: https://www.blogger.com/profile/03255003548313716888
+  - group:
+    - heading "LIst of pages" [level=3]
+    - img
+```
